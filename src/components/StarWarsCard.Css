@@ -1,0 +1,33 @@
+/* StarWarsCard.css */
+
+.sw-card {
+  background-color: #1a1a1a;
+  border: 2px solid #ffe81f;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+  color: #fff;
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.2s ease;
+}
+
+.sw-card:hover {
+  transform: translateY(-5px);
+}
+
+.sw-card-title {
+  color: #ffe81f;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.sw-card-description {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.sw-card-actions {
+  margin-top: 1rem;
+}
