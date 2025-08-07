@@ -1,36 +1,100 @@
 /* Navbar.css */
 
+/* --- Global Body & Fonts --- */
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #0a0a0a; /* Very dark background */
+  color: #fff;
+  font-family: 'Orbitron', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+}
+
+/* --- Navbar --- */
 .navbar {
   background-color: #000; /* deep black */
   border-bottom: 3px solid #ffe81f; /* Star Wars yellow */
   font-family: 'Orbitron', sans-serif;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
+.navbar-logo,
 .navbar-brand {
   color: #ffe81f !important;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  font-size: 1.5rem;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.navbar-logo:hover,
+.navbar-brand:hover {
+  color: #ffcc00;
+  text-decoration: none !important;
 }
 
 .nav-link {
   color: #ffffff !important;
   margin-right: 20px;
   text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
   color: #ffe81f !important;
 }
 
+/* --- Buttons --- */
 .btn-primary {
   background-color: #ffe81f;
   color: #000;
   border: none;
   font-weight: bold;
   padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
   background-color: #ffcc00;
   color: #000;
+}
+
+/* Home button styled like the yellow Star Wars color */
+.sw-home-btn {
+  background-color: #ffe81f;
+  color: #000;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1rem;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.sw-home-btn:hover {
+  background-color: #ffcc00;
+  color: #000;
+  text-decoration: none;
+}
+
+/* --- Card Container --- */
+.sw-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 40p;
 }

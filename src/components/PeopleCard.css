@@ -1,0 +1,43 @@
+/* PeopleCard.css */
+
+.sw-card {
+  background-color: #1a1a1a;
+  color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  width: 220px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sw-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.sw-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.sw-card-title {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.sw-card-description {
+  font-size: 0.95rem;
+  color: #aaa;
+  margin: 8px 0;
+}
+
+.sw-card-actions {
+  background-color: #292929;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  display: inline-block;
+}

@@ -1,0 +1,171 @@
+/* ===== General ===== */
+body, html {
+  background-color: #0a0a0a; /* darker than pure black for depth */
+  color: #fff;
+  font-family: 'Orbitron', Arial, sans-serif; /* Orbitron for sci-fi vibe */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* ===== Headings ===== */
+h1, h2, h3, h4, h5 {
+  color: #ffe81f;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1.5px;
+}
+
+/* ===== Layout ===== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-radius: 6px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.btn-yellow {
+  background-color: #ffe81f;
+  color: #000;
+}
+
+.btn-yellow:hover {
+  background-color: #ffcc00;
+}
+
+.btn-outline-yellow {
+  background-color: transparent;
+  border: 2px solid #ffe81f;
+  color: #ffe81f;
+}
+
+.btn-outline-yellow:hover {
+  background-color: #ffe81f;
+  color: #000;
+}
+
+/* ===== Card Grid / Container ===== */
+.card-grid,
+.sw-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  padding: 20px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== People Cards ===== */
+.sw-card {
+  background-color: #1c1c1c; /* dark card background */
+  color: #eee;
+  border-radius: 14px;
+  padding: 20px;
+  width: 230px;
+  box-shadow: 0 0 15px rgba(255, 232, 31, 0.2);
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.sw-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 25px rgba(255, 232, 31, 0.7);
+}
+
+.sw-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  border: 2px solid #444;
+}
+
+.sw-card-title {
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.sw-card-description {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.sw-card-actions {
+  background-color: #ffe81f;
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: inline-block;
+  user-select: none;
+}
+
+/* ===== Utility Classes ===== */
+.text-center {
+  text-align: center;
+}
+
+/* ===== Navbar Styles (keep minimal here) ===== */
+.navbar {
+  background-color: #000;
+  border-bottom: 3px solid #ffe81f;
+  font-family: 'Orbitron', sans-serif;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo,
+.navbar-brand {
+  color: #ffe81f !important;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  font-size: 1.5rem;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.navbar-logo:hover,
+.navbar-brand:hover {
+  color: #ffcc00;
+  text-decoration: none !important;
+}
+
+.nav-link {
+  color: #ffffff !important;
+  margin-right: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ffe81f !important;
+}
