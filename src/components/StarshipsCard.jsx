@@ -1,27 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./PeopleCard.css";
+import "./StarshipsCard.css";
 
-function PeopleCard({ props, isFavorite, onToggleFavorite }) {
+function StarshipsCard({ props, isFavorite, onToggleFavorite }) {
   return (
     <div className="sw-card">
       <Link
-        to={`/single/${props.uid}?category=people`}
+        to={`/single/${props.uid}?category=starships`}
         style={{ color: "inherit", textDecoration: "none", display: "block" }}
       >
         <img
-          src={`https://github.com/breatheco-de/swapi-images/blob/master/public/images/people/${props.uid}.jpg?raw=true`}
+          src={`https://github.com/breatheco-de/swapi-images/blob/master/public/images/starships/${props.uid}.jpg?raw=true`}
           alt={props.properties.name}
         />
         <h5 className="sw-card-title">{props.properties.name}</h5>
-        <p className="sw-card-description">Gender: {props.properties.gender}</p>
-        <div className="sw-card-actions">Eye Color: {props.properties.eye_color}</div>
+        <p className="sw-card-description">Model: {props.properties.model}</p>
+        <div className="sw-card-actions">Starship Class: {props.properties.starship_class}</div>
       </Link>
 
       <button
         onClick={(e) => {
           e.stopPropagation();
-          onToggleFavorite(props.uid, "people");
+          onToggleFavorite(props.uid, "starships");
         }}
         aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
         className={`favorite-button ${isFavorite ? "active" : "inactive"}`}
@@ -32,4 +32,4 @@ function PeopleCard({ props, isFavorite, onToggleFavorite }) {
   );
 }
 
-export default PeopleCard;
+export default StarshipsCard;

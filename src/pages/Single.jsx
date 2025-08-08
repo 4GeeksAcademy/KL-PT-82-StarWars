@@ -1,37 +1,110 @@
-// Import necessary hooks and components from react-router-dom and other libraries.
-import { Link, useParams } from "react-router-dom";  // To use link for navigation and useParams to get URL parameters
-import PropTypes from "prop-types";  // To define prop types for this component
-import rigoImageUrl from "../assets/img/rigo-baby.jpg"  // Import an image asset
-import useGlobalReducer from "../hooks/useGlobalReducer";  // Import a custom hook for accessing the global state
+import React, { useEffect, useState } from "react";
+import { useParams, useSearchParams, Link } from "react-router-dom";
 
-// Define and export the Single component which displays individual item details.
-export const Single = props => {
-  // Access the global state using the custom hook.
-  const { store } = useGlobalReducer()
+export default function Single() {
+  const { theId } = useParams();
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get("category"); // 'people', 'planets', or 'starships'
 
-  // Retrieve the 'theId' URL parameter using useParams hook.
-  const { theId } = useParams()
-  const singleTodo = store.todos.find(todo => todo.id === parseInt(theId));
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Build API URL based on category and id
+  const apiUrl = category
+    ? `https://www.swapi.tech/api/${category}/${theId}`
+    : null;
+
+  useEffect(() => {
+    if (!apiUrl) {
+      setError("Category missing in URL");
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    fetch(apiUrl)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch data");
+        return res.json();
+      })
+      .then((json) => {
+        setData(json.result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [apiUrl]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!data) return null;
+
+  const { properties, description, name, uid } = data;
+
+  // Construct image URL based on category and uid
+  const imgUrl = `https://github.com/breatheco-de/swapi-images/blob/master/public/images/${category}/${uid}.jpg?raw=true`;
 
   return (
-    <div className="container text-center">
-      {/* Display the title of the todo element dynamically retrieved from the store using theId. */}
-      <h1 className="display-4">Todo: {singleTodo?.title}</h1>
-      <hr className="my-4" />  {/* A horizontal rule for visual separation. */}
+    <div style={{ padding: "20px" }}>
+      <h1>{name || properties.name}</h1>
 
-      {/* A Link component acts as an anchor tag but is used for client-side routing to prevent page reloads. */}
-      <Link to="/">
-        <span className="btn btn-primary btn-lg" href="#" role="button">
-          Back home
-        </span>
-      </Link>
+      {/* Image */}
+      <img
+        src={imgUrl}
+        alt={properties.name}
+        style={{ maxWidth: "300px", borderRadius: "10px", marginBottom: "20px" }}
+      />
+
+      {/* Details */}
+      {category === "people" && (
+        <>
+          <p><strong>Gender:</strong> {properties.gender}</p>
+          <p><strong>Height:</strong> {properties.height} cm</p>
+          <p><strong>Mass:</strong> {properties.mass} kg</p>
+          <p><strong>Hair Color:</strong> {properties.hair_color}</p>
+          <p><strong>Skin Color:</strong> {properties.skin_color}</p>
+          <p><strong>Eye Color:</strong> {properties.eye_color}</p>
+          <p><strong>Birth Year:</strong> {properties.birth_year}</p>
+          <p><strong>Homeworld:</strong> {properties.homeworld}</p>
+        </>
+      )}
+
+      {category === "planets" && (
+        <>
+          <p><strong>Climate:</strong> {properties.climate}</p>
+          <p><strong>Diameter:</strong> {properties.diameter} km</p>
+          <p><strong>Gravity:</strong> {properties.gravity}</p>
+          <p><strong>Orbital Period:</strong> {properties.orbital_period} days</p>
+          <p><strong>Population:</strong> {properties.population}</p>
+          <p><strong>Rotation Period:</strong> {properties.rotation_period} hours</p>
+          <p><strong>Surface Water:</strong> {properties.surface_water}%</p>
+          <p><strong>Terrain:</strong> {properties.terrain}</p>
+        </>
+      )}
+
+      {category === "starships" && (
+        <>
+          <p><strong>Model:</strong> {properties.model}</p>
+          <p><strong>Manufacturer:</strong> {properties.manufacturer}</p>
+          <p><strong>Cost:</strong> {properties.cost_in_credits} credits</p>
+          <p><strong>Length:</strong> {properties.length} m</p>
+          <p><strong>Max Atmosphering Speed:</strong> {properties.max_atmosphering_speed}</p>
+          <p><strong>Crew:</strong> {properties.crew}</p>
+          <p><strong>Passengers:</strong> {properties.passengers}</p>
+          <p><strong>Cargo Capacity:</strong> {properties.cargo_capacity}</p>
+          <p><strong>Consumables:</strong> {properties.consumables}</p>
+          <p><strong>Hyperdrive Rating:</strong> {properties.hyperdrive_rating}</p>
+          <p><strong>MGLT:</strong> {properties.MGLT}</p>
+          <p><strong>Starship Class:</strong> {properties.starship_class}</p>
+        </>
+      )}
+
+      {description && <p>{description}</p>}
+
+      <Link to="/">← Back to Home</Link>
     </div>
   );
-};
-
-// Use PropTypes to validate the props passed to this component, ensuring reliable behavior.
-Single.propTypes = {
-  // Although 'match' prop is defined here, it is not used in the component.
-  // Consider removing or using it as needed.
-  match: PropTypes.object
-};
+}
